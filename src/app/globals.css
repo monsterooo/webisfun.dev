@@ -130,4 +130,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .nav-active {
+    &::after {
+      @apply transition-all duration-500 content-[''] absolute bg-brand-500 w-[3px] h-1/2 left-0 top-1/2 -translate-y-1/2 -skew-x-[18deg];
+    }
+  }
 }

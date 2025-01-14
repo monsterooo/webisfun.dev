@@ -112,6 +112,15 @@ export default {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
       },
+      animation: {
+        "nav-show": "nav-show 0.4s linear 1",
+      },
+      keyframes: {
+        "nav-show": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
