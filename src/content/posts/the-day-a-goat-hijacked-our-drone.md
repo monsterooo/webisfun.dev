@@ -1,6 +1,6 @@
 ---
-title: "The Day a Goat Hijacked Our Drone"
-summary: "When a curious goat hijacks a drone during a routine content collection trip, the ContentCrafter Inc. team turns the quirky mishap into a hilarious and captivating travelogue. Follow the Collectors' adventurous chase, the Validators' meticulous review, and the Transformers' creative magic in this lighthearted tale of unexpected content creation."
+title: "一只山羊劫持了我们的无人机"
+summary: "当一只好奇的山羊在一次例行的内容收集旅行中劫持了一架无人机时，ContentCrafter公司的团队把这个离奇的事故变成了一个滑稽而迷人的旅行日志。在这个意想不到的内容创造的轻松故事中，跟随收藏家的冒险追逐，验证者的细致审查和变形金刚的创造性魔法。"
 date: 2024-09-25
 author: "Alex Johnson"
 ---
