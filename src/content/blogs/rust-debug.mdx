@@ -1,0 +1,55 @@
+---
+title: "Rust 调试时显示源码"
+summary: "当使用 lldb 默认在 VSCode 中调试 Rust 代码时我们的函数会以汇编的形式显示，这对于代码的调试和学习不利，通过搜索和测试可以使用如下方法解决。"
+date: 2025-01-15
+author: Jiang Zhu
+tags: ["markdown"]
+---
+
+## 调试问题
+
+当使用 lldb 默认在 VSCode 中调试 Rust 代码时我们的函数会以汇编的形式显示，这对于代码的调试和学习不利，通过搜索和测试可以使用如下方法解决。
+
+![rust-debug-1](https://github.com/user-attachments/assets/92c2d08f-d777-4e4c-9fb6-4b659be091d2)
+
+## VSCode 配置
+
+我们在生成的 launch.json 中增加一个 sourceMap 配置项，里面的值下面会讲解
+
+```json
+{
+  "type": "lldb",
+  "request": "launch",
+  "name": "Debug executable 'rust-hello'",
+  "cargo": {
+    "args": ["build", "--bin=rust-hello", "--package=rust-hello"],
+    "filter": {
+      "name": "rust-hello",
+      "kind": "bin"
+    }
+  },
+  "args": [],
+  "cwd": "${workspaceFolder}",
+  "sourceMap": {
+    "/rustc/commit-hash/": "value"
+  }
+}
+```
+
+## sourceMap 的 key 获取方法
+
+我们可以使用命令 **rustc --version --verbose** 在输出的文本中找到 commit-hash 复制后面的内容填到配置文件的 commit-hash 中。
+
+## sourceMap 的 value 获取方法
+
+我们使用命令 **rustup show home** 来获取我们的 rust 源文件的根目录，返回的是：/Users/you name/.rustup
+
+再使用命令 **rustup default** 获取到当前 rust 使用的版本，返回的是：1.71.0-x86_64-apple-darwin
+
+最后将两个路径相加，再加上固定的路径 /lib/rustlib/src/rust 就是我们 value 的最终路径。如下所示：
+
+/Users/you name/.rustup/toolchains/1.71.0-x86_64-apple-darwin/lib/rustlib/src/rust
+
+最后重新启动你的调试即可
+
+![rust-debug-2](https://github.com/user-attachments/assets/ddde2fa8-ac4d-46aa-ac28-01dbdfbea565)

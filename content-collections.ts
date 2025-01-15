@@ -6,9 +6,9 @@ import rehypeStarryNight from "rehype-starry-night";
 // for more information on configuration, visit:
 // https://www.content-collections.dev/docs/configuration
 
-const posts = defineCollection({
-  name: "posts",
-  directory: "src/content/posts",
+const blogs = defineCollection({
+  name: "blogs",
+  directory: "src/content/blogs",
   include: "*.mdx",
   schema: (z) => ({
     title: z.string(),
@@ -31,5 +31,5 @@ const posts = defineCollection({
 });
 
 export default defineConfig({
-  collections: [posts],
+  collections: [blogs],
 });
