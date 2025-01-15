@@ -121,6 +121,13 @@ export default {
           "100%": { opacity: "1" },
         },
       },
+      boxShadow: {
+        tag: "inset 1px 1px, inset -1px -1px",
+      },
+      backgroundImage: {
+        divider:
+          "linear-gradient(to right, hsl(var(--background)), hsl(var(--divider)), hsl(var(--background)))",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
