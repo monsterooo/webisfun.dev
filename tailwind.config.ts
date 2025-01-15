@@ -114,12 +114,21 @@ export default {
       },
       animation: {
         "nav-show": "nav-show 0.4s linear 1",
+        "line-drop": "line-drop 7s 0s infinite",
       },
       keyframes: {
         "nav-show": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "line-drop": {
+          "0%": { transform: "translateY(-50vh)" },
+          "100%": { transform: "translateY(110vh)" },
+        },
+      },
+      transitionDelay: {
+        "2000": "2000ms",
+        "2500": "2500ms",
       },
       boxShadow: {
         tag: "inset 1px 1px, inset -1px -1px",
@@ -127,6 +136,7 @@ export default {
       backgroundImage: {
         divider:
           "linear-gradient(to right, hsl(var(--background)), hsl(var(--divider)), hsl(var(--background)))",
+        line: "linear-gradient(to bottom, rgba(68,80,105,0) 0%, hsl(var(--divider)) 75%, hsl(var(--divider)) 100%)",
       },
     },
   },
