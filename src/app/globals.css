@@ -239,7 +239,7 @@ body {
     }
     
     p, ul, ol {
-      font-size: 1.2rem;
+      font-size: 1rem;
       line-height: 1.7em;
       margin: 1.2em 0
     }
@@ -347,6 +347,7 @@ body {
       border-radius: 6px;
       padding: 1em;
       background-color: hsl(var(--brand-100));
+      overflow: auto;
     }
 
     code:not(pre code) {
