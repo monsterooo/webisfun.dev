@@ -18,13 +18,15 @@ export default function Posts() {
                 className="aspect-video rounded-lg max-w-full h-auto object-cover w-full mb-2"
               />
             )}
-            <p className="text-gray-500 font-bold font-sans">
+            <p className="text-gray-500 text-sm md:text-base font-bold font-sans">
               {blog.date.toLocaleDateString()}
             </p>
-            <h2 className="transition-colors hover:text-brand-500 text-3xl font-bold leading-tight mt-4">
+            <h2 className="transition-colors hover:text-brand-500 text-xl md:text-3xl font-bold leading-tight mt-4">
               <Link href={`/blog/${blog._meta.path}`}>{blog.title}</Link>
             </h2>
-            <p className="my-6 leading-[1.7] text-[1.2rem]">{blog.summary}</p>
+            <p className="my-3 md:my-6 leading-[1.7] text-base md:text-xl">
+              {blog.summary}
+            </p>
             <div className="flex gap-2">
               {blog.tags &&
                 blog.tags.map((tag) => (

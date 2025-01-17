@@ -31,13 +31,13 @@ export function Nav() {
   };
 
   return (
-    <nav className="font-sans flex justify-center items-center gap-4">
+    <nav className="font-sans flex justify-center items-center gap-2 md:gap-4">
       {links.map((link) => (
         <Link
           key={link.href}
           href={link.href}
           className={cn(
-            "font-bold text-lg relative px-3 transition-all duration-500 hover:text-brand-500 nav",
+            "font-bold text-base md:text-lg relative pl-2 pr-1 md:px-3 transition-all duration-500 hover:text-brand-500 nav",
             {
               "text-gray-500": !isActive(link.href),
               "nav-active text-gray-900 after:animate-nav-show": isActive(
