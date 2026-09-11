@@ -30,16 +30,18 @@ const { tags, class: className } = Astro.props;
   .tag {
     display: inline-block;
     padding: var(--tag-padding-y) var(--spacing-3);
+    font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
-    background: var(--color-surface);
+    background: transparent;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius);
     text-decoration: none;
-    transition: color var(--transition-fast), background var(--transition-fast);
+    transition: color var(--transition-fast), border-color var(--transition-fast);
   }
 
   .tag:hover {
-    color: var(--color-text);
-    background: var(--color-border);
+    color: var(--color-brand);
+    border-color: var(--color-brand);
   }
 </style>

@@ -1,0 +1,20 @@
+---
+version: 1
+slug: "site"
+primary_target: "site"
+related_targets: []
+---
+
+## Direction contract
+
+THESIS: The site reads as a release log for one person's thinking, not a magazine feature — borrowing the badge/hairline/monospace-meta grammar of GitHub Releases and npm/crates.io package pages instead of the editorial-hero-plus-serif-pullquote arrangement most AI-generated "tech blogs" default to. It refuses both the warm-cream-serif-terracotta cliché and the broadsheet-editorial-hairline-italic cliché by staying strictly monochrome-plus-one-blue and swapping "article card" chrome for "changelog row" chrome.
+
+OWN-WORLD: Neutral near-black/near-white ground (existing `--color-bg` scale, untouched), single brand blue (`#0066cc` / dark-mode equivalent) reserved only for links, active nav/theme-toggle state, and one hairline accent bar on "current/updated" rows — never a fill, never a second hue. Space Grotesk carries all display/body type (shares lineage with the mono face, so headline and label read as one family); Space Mono replaces JetBrains Mono for meta text, badges, code, and the small-caps-style tracked labels. Structure is hairline rules (1px, `--color-border`) doing the work cards/shadows used to do — no box-shadow, no filled card backgrounds, no rounded pill backgrounds except tag/category badges (which get a thin 1px outline, not a filled pill). Post-list and archive rows read like a changelog: monospace date + reading time + category badge on one meta line, title below it, hairline rule closing the row. Vertical rhythm is stricter and more repetitive than the current template — the same row unit repeats down the page instead of varied card sizes.
+
+STORY: A visitor lands expecting a generic blog and instead recognizes, within one screenful, "this person builds things and writes like they build things" — precise, dated, versioned, no fluff framing. They scan the changelog-style archive the way they'd scan a GitHub Releases page, click into a post, and find the three-column reading layout intact (meta rail, 680px body, TOC/search/categories gutter) but restyled in the same hairline/monospace grammar, so the reading experience still feels considered rather than borrowed wholesale from a tool.
+
+FIRST VIEWPORT (home): A slim monospace eyebrow line at the top (`posts / <year>`), then the featured post treated as a "README header": heavy-weight Space Grotesk title (no display serif, no oversized hero image treatment), one-line excerpt, a row of thin-outline category/tag badges, hairline rule. Below it, the latest-posts list immediately begins in changelog-row form — no separate "grid" section, no card shadows — each row: monospace meta line (date · reading time · category badge), title, hairline divider. The featured image keeps its existing prominence but sits inline within the README-header block, not as a full-bleed hero.
+
+FORM: Candidate 5 of my own ranked list (package registry / changelog visual grammar), assigned by the roll; seed key `299bc400`. Raised with: one-accent brightness-not-hue state signaling (from the cracktro-scroller challenger), state-as-mark-not-hue for draft/updated indicators (from the cutting-bench challenger), monospace/numeral treatment standing in for a display face (from the LEGO-instructions challenger), a strict rationed-color baseline grid (from the Bauhaus-workshop challenger), and hairline-vs-solid rule weight separating primary structure from metadata (from the provenance-ribbon challenger). Declined: cracktro scroller, cutting bench, LEGO instructions, Bauhaus workshop, provenance ribbon (all lost on product clarity for a personal reading blog). Competitive, not adopted: Emigre bitmap specimen (held audience-identification on craft/novelty grounds but risked legibility/date-ability across long-form body text) — user confirmed the assigned direction over this and the "Unified Diff" pick card.
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.

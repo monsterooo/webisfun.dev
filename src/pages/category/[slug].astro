@@ -40,8 +40,9 @@ const filteredPosts = posts.map((post) => ({
 <Base title={`${term.label} posts`} description={`All posts in ${term.label}`}>
 	<section class="archive-section">
 		<header class="archive-header">
-			<span class="archive-label">Category</span>
-			<h1 class="archive-title">{term.label}</h1>
+			<h1 class="archive-title">
+				<span class="archive-kind">category /</span> {term.label}
+			</h1>
 			<p class="archive-count">
 				{filteredPosts.length}
 				{filteredPosts.length === 1 ? "post" : "posts"}
@@ -52,7 +53,7 @@ const filteredPosts = posts.map((post) => ({
 			filteredPosts.length === 0 ? (
 				<p class="no-posts">No posts in this category yet.</p>
 			) : (
-				<div class="posts-grid">
+				<div class="posts-list">
 					{filteredPosts.map(({ post, tags }) => (
 						<PostCard
 							title={post.data.title}
@@ -83,14 +84,11 @@ const filteredPosts = posts.map((post) => ({
 		border-bottom: 1px solid var(--color-border-subtle);
 	}
 
-	.archive-label {
-		display: block;
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		color: var(--color-brand);
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		margin-bottom: var(--spacing-2);
+	.archive-kind {
+		font-family: var(--font-mono);
+		font-weight: 400;
+		color: var(--color-muted);
+		letter-spacing: 0;
 	}
 
 	.archive-title {
@@ -101,29 +99,17 @@ const filteredPosts = posts.map((post) => ({
 	}
 
 	.archive-count {
+		font-family: var(--font-mono);
 		font-size: var(--font-size-sm);
 		color: var(--color-muted);
 	}
 
-	.posts-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--spacing-12) var(--spacing-8);
+	.posts-list {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.no-posts {
 		color: var(--color-muted);
-	}
-
-	@media (max-width: 900px) {
-		.posts-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (max-width: 600px) {
-		.posts-grid {
-			grid-template-columns: 1fr;
-		}
 	}
 </style>

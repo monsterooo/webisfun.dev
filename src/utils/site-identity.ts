@@ -12,8 +12,9 @@ export interface BlogSiteIdentitySettings {
 	favicon?: MediaReference;
 }
 
-const DEFAULT_SITE_TITLE = "My Blog";
-const DEFAULT_SITE_TAGLINE = "Thoughts, stories, and ideas.";
+const DEFAULT_SITE_TITLE = "Ship Log";
+const DEFAULT_SITE_TAGLINE =
+	"A running log of things I've built, broken, and learned.";
 
 export function resolveBlogSiteIdentity(settings?: BlogSiteIdentitySettings) {
 	return {

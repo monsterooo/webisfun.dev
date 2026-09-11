@@ -25,8 +25,53 @@
 */
 
 :root {
+	/*
+	 * "Release Notes" direction: the site borrows the visual grammar of
+	 * package-registry pages and changelogs -- hairline rules do the
+	 * structural work cards/shadows used to do, so shadows collapse to a
+	 * flat hairline (or nothing) and corners stay tight rather than soft.
+	 */
+	--shadow-sm: none;
+	--shadow-lg: 0 0 0 1px var(--color-border);
+	--radius: 3px;
+	--radius-lg: 6px;
+
+	/*
+	 * The mono meta line (dates, badges, reading time) leans on
+	 * --color-muted far more than the original template did, so it needs
+	 * to actually clear WCAG AA (4.5:1) against both bg tones instead of
+	 * the default's ~3.5:1.
+	 */
+	--color-muted: light-dark(#767676, #999999);
+
+	/*
+	 * --color-brand lightens in dark mode for link legibility on a near-
+	 * black page, but that lighter blue fails contrast when used as a
+	 * solid fill under white text (buttons, ::selection). Filled surfaces
+	 * use this fixed, deeper blue in both themes instead.
+	 */
+	--color-brand-solid: #0066cc;
+	--color-brand-solid-hover: #0052a3;
 }
 
 .nav-admin {
 	margin-inline-start: var(--spacing-5);
+}
+
+/*
+ * System-label grammar: every small uppercase/tracked meta label (section
+ * headings, meta labels, badges, TOC/widget titles) reads in the mono face
+ * so it registers as machine-set metadata against the Space Grotesk prose.
+ */
+.footer-heading,
+.section-title,
+.meta-label,
+.meta-value,
+.toc-title,
+.row-meta,
+.post-meta,
+.featured-meta,
+.article-meta,
+.widget__title {
+	font-family: var(--font-mono);
 }

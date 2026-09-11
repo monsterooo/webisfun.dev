@@ -7,8 +7,8 @@
 		"author": "EmDash"
 	},
 	"settings": {
-		"title": "My Blog",
-		"tagline": "Thoughts on building for the web"
+		"title": "Ship Log",
+		"tagline": "A running log of things I've built, broken, and learned."
 	},
 	"collections": [
 		{
