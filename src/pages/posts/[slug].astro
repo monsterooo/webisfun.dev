@@ -121,8 +121,9 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 			)
 		}
 
-		{/* Three-column layout */}
-		<div class="article-grid">
+		{/* Three-column layout -- the left meta column only exists to hold
+		    author bylines now, so drop it entirely when a post has none. */}
+		<div class:list={["article-grid", { "no-meta-col": bylines.length === 0 }]}>
 			{/* Left gutter: Meta information */}
 			<aside class="article-meta-col">
 				<div class="meta-sticky">
@@ -154,32 +155,6 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 							</div>
 						)
 					}
-					{
-						publishDate && (
-							<div class="meta-block">
-								<span class="meta-label">发布于</span>
-								<time class="meta-value">{publishDate}</time>
-							</div>
-						)
-					}
-					<div class="meta-block">
-						<span class="meta-label">阅读时长</span>
-						<span class="meta-value">{readingTime} 分钟</span>
-					</div>
-					{
-						tags.length > 0 && (
-							<div class="meta-block">
-								<span class="meta-label">标签</span>
-								<div class="meta-tags">
-									{tags.map((t) => (
-										<a href={`/tag/${t.slug}`} class="meta-tag">
-											{t.label}
-										</a>
-									))}
-								</div>
-							</div>
-						)
-					}
 				</div>
 			</aside>
 
@@ -190,7 +165,7 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 						{
 							bylines.length > 0 && (
 								<>
-									<span class="article-meta-byline">
+									<span class="article-meta-byline mobile-byline">
 										{bylines.map((credit, i) => (
 											<>
 												{i > 0 && ", "}
@@ -198,7 +173,7 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 											</>
 										))}
 									</span>
-									<span class="meta-dot" />
+									<span class="meta-dot mobile-byline" />
 								</>
 							)
 						}
@@ -216,6 +191,17 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 					{
 						post.data.excerpt && (
 							<p class="article-excerpt" {...post.edit.excerpt}>{post.data.excerpt}</p>
+						)
+					}
+					{
+						tags.length > 0 && (
+							<div class="article-tags">
+								{tags.map((t) => (
+									<a href={`/tag/${t.slug}`} class="meta-tag">
+										{t.label}
+									</a>
+								))}
+							</div>
 						)
 					}
 				</header>
@@ -381,6 +367,14 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 		display: block;
 	}
 
+	.article-grid.no-meta-col {
+		grid-template-columns: minmax(0, var(--content-width)) var(--gutter-width);
+	}
+
+	.article-grid.no-meta-col .article-meta-col {
+		display: none;
+	}
+
 	.meta-sticky {
 		position: sticky;
 		top: calc(var(--nav-height) + var(--spacing-8));
@@ -478,7 +472,7 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 	}
 
 	.article-header .article-meta {
-		display: none;
+		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
 		column-gap: var(--spacing-3);
@@ -493,6 +487,19 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 		color: var(--color-text-secondary);
 	}
 
+	.meta-dot {
+		width: 3px;
+		height: 3px;
+		border-radius: 50%;
+		background: var(--color-muted);
+	}
+
+	/* Byline is already shown in the left meta column on desktop -- only
+	   surface it here once that column is hidden on narrower screens. */
+	.mobile-byline {
+		display: none;
+	}
+
 	.article-title {
 		font-size: clamp(2rem, 5vw, var(--font-size-5xl));
 		font-weight: var(--font-weight-display);
@@ -505,6 +512,13 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 		font-size: var(--font-size-xl);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
+	}
+
+	.article-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-2);
+		margin-top: var(--spacing-6);
 	}
 
 	/* Article content typography */
@@ -941,8 +955,8 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 			display: none;
 		}
 
-		.article-header .article-meta {
-			display: flex;
+		.mobile-byline {
+			display: inline;
 		}
 	}
 
