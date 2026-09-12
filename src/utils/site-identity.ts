@@ -12,9 +12,8 @@ export interface BlogSiteIdentitySettings {
 	favicon?: MediaReference;
 }
 
-const DEFAULT_SITE_TITLE = "Ship Log";
-const DEFAULT_SITE_TAGLINE =
-	"A running log of things I've built, broken, and learned.";
+const DEFAULT_SITE_TITLE = "开发日志";
+const DEFAULT_SITE_TAGLINE = "记录我构建、踩坑与学到的一切。";
 
 export function resolveBlogSiteIdentity(settings?: BlogSiteIdentitySettings) {
 	return {

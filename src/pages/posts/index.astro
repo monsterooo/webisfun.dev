@@ -30,19 +30,18 @@ const postsWithTags = posts.map((post) => ({
 const formatDate = (date: Date) => date.toLocaleDateString("en-CA");
 ---
 
-<Base title="All Posts" description="Browse all blog posts">
+<Base title="全部文章" description="浏览所有博客文章">
 	<div class="posts-page">
 		<header class="page-header">
-			<h1 class="page-title">All Posts</h1>
+			<h1 class="page-title">全部文章</h1>
 			<p class="page-description">
-				{posts.length}
-				{posts.length === 1 ? "article" : "articles"}
+				共 {posts.length} 篇文章
 			</p>
 		</header>
 
 		{
 			posts.length === 0 ? (
-				<p class="empty">No posts yet.</p>
+				<p class="empty">暂无文章。</p>
 			) : (
 				<div class="posts-list">
 					{postsWithTags.map(({ post, tags, bylines }) => (
@@ -80,7 +79,7 @@ const formatDate = (date: Date) => date.toLocaleDateString("en-CA");
 										<time>{formatDate(post.data.publishedAt)}</time>
 									)}
 									{post.data.publishedAt && <span class="meta-dot" />}
-									<span>{getReadingTime(post.data.content)} min read</span>
+									<span>{getReadingTime(post.data.content)} 分钟阅读</span>
 								</div>
 								<h2 class="post-title">{post.data.title}</h2>
 								{post.data.excerpt && (

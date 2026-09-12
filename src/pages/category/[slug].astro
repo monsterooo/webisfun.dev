@@ -37,21 +37,20 @@ const filteredPosts = posts.map((post) => ({
 }));
 ---
 
-<Base title={`${term.label} posts`} description={`All posts in ${term.label}`}>
+<Base title={`${term.label} 分类文章`} description={`所有属于 ${term.label} 分类的文章`}>
 	<section class="archive-section">
 		<header class="archive-header">
 			<h1 class="archive-title">
-				<span class="archive-kind">category /</span> {term.label}
+				<span class="archive-kind">分类 /</span> {term.label}
 			</h1>
 			<p class="archive-count">
-				{filteredPosts.length}
-				{filteredPosts.length === 1 ? "post" : "posts"}
+				共 {filteredPosts.length} 篇文章
 			</p>
 		</header>
 
 		{
 			filteredPosts.length === 0 ? (
-				<p class="no-posts">No posts in this category yet.</p>
+				<p class="no-posts">该分类下暂无文章。</p>
 			) : (
 				<div class="posts-list">
 					{filteredPosts.map(({ post, tags }) => (

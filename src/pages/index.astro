@@ -76,15 +76,15 @@ const currentYear = new Date().getFullYear();
 	{
 		posts.length === 0 ? (
 			<section class="empty-state">
-				<h2>No posts yet</h2>
-				<p>Create your first post in the admin panel.</p>
+				<h2>暂无文章</h2>
+				<p>在管理后台创建你的第一篇文章。</p>
 				<a href="/_emdash/admin/content/posts/new" class="btn">
-					Create a post
+					创建文章
 				</a>
 			</section>
 		) : (
 			<div class="home-content">
-				<span class="feed-eyebrow">posts / {currentYear}</span>
+				<span class="feed-eyebrow">文章 / {currentYear}</span>
 
 				{/* Featured post, framed as a README header rather than a full-bleed hero */}
 				{featuredPost && (
@@ -126,7 +126,7 @@ const currentYear = new Date().getFullYear();
 									)}
 									<span class="meta-dot" />
 									<span>
-										{getReadingTime(featuredPost.data.content)} min read
+										{getReadingTime(featuredPost.data.content)} 分钟阅读
 									</span>
 								</div>
 								<a
@@ -161,17 +161,17 @@ const currentYear = new Date().getFullYear();
 				{gridPostsWithTags.length > 0 && (
 					<section class="posts-section">
 						<header class="section-header">
-							<h2 class="section-title">Latest</h2>
+							<h2 class="section-title">最新文章</h2>
 							{hasMorePosts && (
 								<a href="/posts" class="section-link">
-									View all
+									查看全部
 								</a>
 							)}
 						</header>
 						<div class="posts-list">
 							{gridPostsWithTags.map(({ post, tags, bylines }) => (
 								<PostCard
-									title={post.data.title ?? "Untitled"}
+									title={post.data.title ?? "无标题"}
 									excerpt={post.data.excerpt}
 									featuredImage={post.data.featured_image}
 									href={`/posts/${post.id}`}
