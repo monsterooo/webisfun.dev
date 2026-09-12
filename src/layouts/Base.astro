@@ -85,6 +85,8 @@ const isLoggedIn = !!Astro.locals.user;
 		<Font cssVariable="--font-body" preload />
 		<Font cssVariable="--font-mono" />
 		<title>{fullTitle}</title>
+		<link rel="icon" href="/logo-light.svg" media="(prefers-color-scheme: light)" />
+		<link rel="icon" href="/logo-dark.svg" media="(prefers-color-scheme: dark)" />
 		<EmDashHead page={pageCtx} />
 		<script is:inline>
 			// Apply an explicit theme choice immediately to prevent flash.

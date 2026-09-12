@@ -6,10 +6,24 @@ import webhookNotifier from "@emdash-cms/plugin-webhook-notifier";
 import { defineConfig, fontProviders } from "astro/config";
 import emdash from "emdash/astro";
 import { cloudflareEmail } from "@emdash-cms/cloudflare/plugins";
+import { Features } from "lightningcss";
 
 export default defineConfig({
   output: "server",
   adapter: cloudflare(),
+  vite: {
+    css: {
+      lightningcss: {
+        // Vite's default CSS build target predates browser support for
+        // light-dark(), so the production build was silently rewriting it
+        // into a prefers-color-scheme-only polyfill that ignores the
+        // color-scheme class the theme switcher (Base.astro) toggles.
+        // Excluding this feature keeps light-dark() native so the switcher
+        // actually works in production, matching dev behavior.
+        exclude: Features.LightDark,
+      },
+    },
+  },
   image: {
     layout: "constrained",
     responsiveStyles: true,
