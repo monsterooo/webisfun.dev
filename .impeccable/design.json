@@ -46,7 +46,7 @@
       "refersTo": "button-primary",
       "description": "Solid-fill call to action: search submit, empty-state CTA, comment submit.",
       "html": "<button class=\"ds-btn-primary\">Search</button>",
-      "css": ".ds-btn-primary { background: #0066cc; color: #ffffff; border: none; border-radius: 3px; padding: 12px 24px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; transition: background 120ms ease; } .ds-btn-primary:hover { background: #0052a3; } .ds-btn-primary:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }"
+      "css": ".ds-btn-primary { background: #0066cc; color: #ffffff; border: none; border-radius: 3px; padding: 12px 24px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; transition: background 120ms ease; } .ds-btn-primary:hover { background: #0052a3; } .ds-btn-primary:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }"
     },
     {
       "name": "Badge",
@@ -54,7 +54,7 @@
       "refersTo": "badge",
       "description": "Outlined mono-label chip for tags/categories; the system's only chip pattern, replacing filled pills.",
       "html": "<span class=\"ds-badge\">development</span>",
-      "css": ".ds-badge { display: inline-block; padding: 1px 8px; font-family: 'Space Mono', monospace; font-size: 0.8125rem; color: #525252; background: transparent; border: 1px solid #e5e5e5; border-radius: 3px; transition: color 120ms ease, border-color 120ms ease; } .ds-badge:hover { color: #0066cc; border-color: #0066cc; }"
+      "css": ".ds-badge { display: inline-block; padding: 1px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8125rem; color: #525252; background: transparent; border: 1px solid #e5e5e5; border-radius: 3px; transition: color 120ms ease, border-color 120ms ease; } .ds-badge:hover { color: #0066cc; border-color: #0066cc; }"
     },
     {
       "name": "Post Row",
@@ -62,7 +62,7 @@
       "refersTo": "post-row",
       "description": "Signature changelog-row list item: meta line, title, optional thumbnail, hairline divider. Used on every post listing surface.",
       "html": "<article class=\"ds-post-row\"><div class=\"ds-row-main\"><div class=\"ds-row-meta\"><span class=\"ds-row-badge\">development</span><time>2026-03-05</time><span>6 min</span></div><h2 class=\"ds-row-title\">Building for the Long Term</h2><p class=\"ds-row-excerpt\">A short excerpt of the post goes here, clamped to two lines.</p></div><div class=\"ds-row-thumb\"></div></article>",
-      "css": ".ds-post-row { display: flex; align-items: center; gap: 24px; padding: 24px 0; border-bottom: 1px solid #f0f0f0; font-family: 'Space Grotesk', sans-serif; } .ds-row-main { flex: 1; min-width: 0; } .ds-row-meta { display: flex; align-items: center; gap: 12px; font-family: 'Space Mono', monospace; font-size: 0.8125rem; color: #767676; margin-bottom: 8px; } .ds-row-badge { padding: 1px 8px; border: 1px solid #e5e5e5; border-radius: 3px; color: #0066cc; } .ds-row-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; } .ds-row-excerpt { color: #525252; font-size: 1rem; line-height: 1.7; max-width: 58ch; } .ds-row-thumb { flex-shrink: 0; width: 96px; height: 72px; border: 1px solid #e5e5e5; border-radius: 3px; background: #f7f7f7; }"
+      "css": ".ds-post-row { display: flex; align-items: center; gap: 24px; padding: 24px 0; border-bottom: 1px solid #f0f0f0; font-family: 'IBM Plex Sans', sans-serif; } .ds-row-main { flex: 1; min-width: 0; } .ds-row-meta { display: flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8125rem; color: #767676; margin-bottom: 8px; } .ds-row-badge { padding: 1px 8px; border: 1px solid #e5e5e5; border-radius: 3px; color: #0066cc; } .ds-row-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; } .ds-row-excerpt { color: #525252; font-size: 1rem; line-height: 1.7; max-width: 58ch; } .ds-row-thumb { flex-shrink: 0; width: 96px; height: 72px; border: 1px solid #e5e5e5; border-radius: 3px; background: #f7f7f7; }"
     },
     {
       "name": "Theme Switcher",
@@ -78,19 +78,19 @@
     "overview": "Ship Log borrows its visual grammar from the pages developers read every day without thinking of them as \"design\": GitHub Releases, npm and crates.io package pages, changelog files. A post is treated like an entry in a log — dated, tagged, badge-labeled — rather than a magazine feature with a hero image and a pull-quote. The system refuses two AI-generated-blog clichés on sight: the warm-cream-paper-plus-serif-display look, and the broadsheet-editorial-hairline-plus-italic look. Instead it stays strictly monochrome with one blue, lets hairline rules do the structural work cards and shadows usually do, and treats monospace type as the system's \"label language\" — the tell that something is metadata rather than prose. Density is calm, not dense: one changelog-style row per post, generous vertical rhythm, no card grid. The three-column article reading layout is preserved and restyled in the same grammar rather than replaced — this is still a reading product first.",
     "keyCharacteristics": [
       "Hairline rules and outlined badges instead of cards, shadows, and filled pills.",
-      "Space Grotesk for all prose and headings; Space Mono exclusively for machine-set metadata.",
+      "IBM Plex Sans for all prose and headings; IBM Plex Mono exclusively for machine-set metadata.",
       "ISO-shaped dates (2026-03-05) instead of prose dates.",
       "Exactly one accent color, used only for interactive/active state."
     ],
     "rules": [
       { "name": "The One Voice Rule", "body": "There is exactly one hue in this system. Express a second idea as weight, outline, or glyph, never a second color.", "section": "colors" },
       { "name": "The Two-Blue Rule", "body": "--color-brand is for text/rings/outlines and shifts per theme. --color-brand-solid is for anything a white-text fill sits under, and is fixed across both themes.", "section": "colors" },
-      { "name": "The System-Voice Rule", "body": "Text describing the system (dates, counts, tags, nav labels) is set in Space Mono; text that is the writing stays in Space Grotesk.", "section": "typography" },
+      { "name": "The System-Voice Rule", "body": "Text describing the system (dates, counts, tags, nav labels) is set in IBM Plex Mono; text that is the writing stays in IBM Plex Sans.", "section": "typography" },
       { "name": "The Flat-By-Default Rule", "body": "Nothing casts a soft shadow. Depth and state are hairlines, outlines, and inset accent bars.", "section": "elevation" }
     ],
     "dos": [
       "Do set every date as date.toLocaleDateString(\"en-CA\") for a YYYY-MM-DD changelog timestamp.",
-      "Do put any new metadata in Space Mono, following The System-Voice Rule.",
+      "Do put any new metadata in IBM Plex Mono, following The System-Voice Rule.",
       "Do keep new list/archive UI in the single-column changelog-row pattern.",
       "Do cap prose line length explicitly with a ch-based max-width."
     ],
@@ -99,7 +99,7 @@
       "Don't reintroduce box-shadow as a soft/blurred effect anywhere.",
       "Don't use --color-brand as a fill under white text; use --color-brand-solid.",
       "Don't collapse the article's three-column layout on desktop, and don't place a tracked kicker label as its own line above an h1.",
-      "Don't replace Space Grotesk with a display/novelty face."
+      "Don't replace IBM Plex Sans with a display/novelty face."
     ]
   }
 }

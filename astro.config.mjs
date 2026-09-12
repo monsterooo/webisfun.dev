@@ -34,14 +34,14 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: "Space Grotesk",
+      name: "IBM Plex Sans",
       cssVariable: "--font-body",
       weights: [400, 500, 600, 700],
       fallbacks: ["sans-serif"],
     },
     {
       provider: fontProviders.google(),
-      name: "Space Mono",
+      name: "IBM Plex Mono",
       cssVariable: "--font-mono",
       weights: [400, 700],
       fallbacks: ["monospace"],

@@ -17,24 +17,24 @@ colors:
   on-brand: "#ffffff"
 typography:
   display:
-    fontFamily: "Space Grotesk, sans-serif"
+    fontFamily: "IBM Plex Sans, sans-serif"
     fontSize: "clamp(2rem, 5vw, 3.5rem)"
     fontWeight: 700
     lineHeight: 1.15
     letterSpacing: "-0.03em"
   heading:
-    fontFamily: "Space Grotesk, sans-serif"
+    fontFamily: "IBM Plex Sans, sans-serif"
     fontSize: "1.5rem"
     fontWeight: 600
     lineHeight: 1.3
     letterSpacing: "-0.02em"
   body:
-    fontFamily: "Space Grotesk, sans-serif"
+    fontFamily: "IBM Plex Sans, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.7
   label:
-    fontFamily: "Space Mono, monospace"
+    fontFamily: "IBM Plex Mono, monospace"
     fontSize: "0.8125rem"
     fontWeight: 400
     letterSpacing: "0.06em"
@@ -78,7 +78,7 @@ Density is calm, not dense: one changelog-style row per post, generous vertical 
 
 **Key Characteristics:**
 - Hairline rules and outlined badges instead of cards, shadows, and filled pills.
-- Space Grotesk for all prose and headings; Space Mono exclusively for machine-set metadata (dates, badges, labels, counts).
+- IBM Plex Sans for all prose and headings; IBM Plex Mono exclusively for machine-set metadata (dates, badges, labels, counts).
 - ISO-shaped dates (`2026-03-05`, via `en-CA` locale formatting) instead of prose dates ("March 5, 2026").
 - Exactly one accent color, used only for interactive/active state — never as a fill behind body copy or a section background.
 
@@ -106,19 +106,19 @@ Strictly monochrome-plus-one-blue. Every color is defined with `light-dark(light
 
 ## Typography
 
-**Body & Display Font:** Space Grotesk (fallback: sans-serif)
-**Label/Mono Font:** Space Mono (fallback: monospace)
+**Body & Display Font:** IBM Plex Sans (fallback: sans-serif)
+**Label/Mono Font:** IBM Plex Mono (fallback: monospace)
 
-**Character:** Space Grotesk and Space Mono share a lineage (the mono face came first; the sans was drawn from it), so headline and label read as one family wearing two registers — prose voice and system voice — rather than two unrelated typefaces glued together.
+**Character:** IBM Plex Sans and IBM Plex Mono were designed together as one type system (IBM Plex), so headline and label read as one family wearing two registers — prose voice and system voice — rather than two unrelated typefaces glued together. Plex's larger x-height and more neutral letterforms also read more comfortably at body size over long articles than the previous display-leaning face.
 
 ### Hierarchy
 - **Display** (700, `clamp(2rem, 5vw, 3.5rem)`, 1.15): post titles on the article page and the featured "README header" title on the home page.
 - **Heading** (600, 1.5rem–2rem, 1.3): section titles, card/row titles, page titles.
 - **Body** (400, 1rem, 1.7): article prose, excerpts. Excerpts are capped at 58–60ch — this system enforces comfortable line length explicitly rather than trusting the container.
-- **Label** (400, 0.8125rem, tracked 0.06em, Space Mono): every piece of system metadata — nav links, footer headings, meta lines, TOC/widget titles, badges, the `posts / 2026` eyebrow, post counts. This is the system's most identity-defining rule.
+- **Label** (400, 0.8125rem, tracked 0.06em, IBM Plex Mono): every piece of system metadata — nav links, footer headings, meta lines, TOC/widget titles, badges, the `posts / 2026` eyebrow, post counts. This is the system's most identity-defining rule.
 
 ### Named Rules
-**The System-Voice Rule.** Any text that describes the *system* rather than the *writing* — a date, a count, a tag, a nav label, a section heading — is set in Space Mono, uppercase-tracked where it's a label. Any text that *is* the writing (titles, excerpts, body, byline names) stays in Space Grotesk. This one rule generates almost the entire visual identity.
+**The System-Voice Rule.** Any text that describes the *system* rather than the *writing* — a date, a count, a tag, a nav label, a section heading — is set in IBM Plex Mono, uppercase-tracked where it's a label. Any text that *is* the writing (titles, excerpts, body, byline names) stays in IBM Plex Sans. This one rule generates almost the entire visual identity.
 
 ## Layout
 
@@ -149,23 +149,23 @@ Every structural boundary — row dividers, the featured-post frame, badge outli
 - **Hover:** background steps to `--color-brand-solid-hover`; no scale or shadow change.
 
 ### Badges (tags, categories)
-- **Style:** transparent background, 1px `--color-border` outline, Space Mono label, 3px radius, `1px 8px` padding.
+- **Style:** transparent background, 1px `--color-border` outline, IBM Plex Mono label, 3px radius, `1px 8px` padding.
 - **State:** hover swaps the outline and text color to `--color-brand` — never a filled background. This is the system's only "chip" pattern; it replaces every filled-pill tag from the incumbent template.
 
 ### Post Row (signature component)
-The changelog-row pattern used everywhere posts are listed (home, archive, category, tag, "continue reading"). A single flex row: meta line (badge + byline + mono date + reading time) above a Space Grotesk title, an optional 96×72px hairline-framed thumbnail on the trailing edge, a bottom hairline divider. No card, no shadow, no rounded-corner image treatment beyond the shared 3px radius.
+The changelog-row pattern used everywhere posts are listed (home, archive, category, tag, "continue reading"). A single flex row: meta line (badge + byline + mono date + reading time) above an IBM Plex Sans title, an optional 96×72px hairline-framed thumbnail on the trailing edge, a bottom hairline divider. No card, no shadow, no rounded-corner image treatment beyond the shared 3px radius.
 
 ### Theme Switcher
 - **Style:** a hairline-bordered segmented control (not a soft pill). Segments are divided by 1px hairlines; the active segment gets a `--color-surface` background plus a 2px inset bottom accent bar in `--color-brand` — a mark, not a shadow.
 
 ### Navigation
-- Site title in Space Grotesk (700, tight tracking). Primary nav links and the admin link render in Space Mono, uppercase, tracked — the nav reads as a toolbar, not a magazine masthead. The header is flat (`--color-bg` + 1px bottom border), not glassy/blurred.
+- Site title in IBM Plex Sans (700, tight tracking). Primary nav links and the admin link render in IBM Plex Mono, uppercase, tracked — the nav reads as a toolbar, not a magazine masthead. The header is flat (`--color-bg` + 1px bottom border), not glassy/blurred.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** set every date as `date.toLocaleDateString("en-CA")` (renders `YYYY-MM-DD`) — this is a deliberate, system-wide choice, not a locale default left untouched.
-- **Do** put any new metadata (word count, view count, a "featured" mark) in Space Mono, following The System-Voice Rule.
+- **Do** put any new metadata (word count, view count, a "featured" mark) in IBM Plex Mono, following The System-Voice Rule.
 - **Do** keep new list/archive UI in the single-column changelog-row pattern; resist reaching for a card grid.
 - **Do** cap prose line length explicitly (`max-width` in `ch`) rather than trusting the container width, especially in wide layout regions like the featured header.
 
@@ -174,4 +174,4 @@ The changelog-row pattern used everywhere posts are listed (home, archive, categ
 - **Don't** reintroduce `box-shadow` as a soft/blurred effect anywhere — see The Flat-By-Default Rule.
 - **Don't** use `--color-brand` as a fill under white text; use `--color-brand-solid` — see The Two-Blue Rule.
 - **Don't** collapse the article's three-column layout on desktop, and don't put a tiny tracked kicker label as its own line directly above an `<h1>` — fold it into the heading instead (see the `category /` / `tag /` inline prefix pattern on archive pages).
-- **Don't** replace Space Grotesk with a display/novelty face; weight and size carry hierarchy, not a second typeface.
+- **Don't** replace IBM Plex Sans with a display/novelty face; weight and size carry hierarchy, not a second typeface.

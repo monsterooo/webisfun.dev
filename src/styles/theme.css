@@ -61,7 +61,7 @@
 /*
  * System-label grammar: every small uppercase/tracked meta label (section
  * headings, meta labels, badges, TOC/widget titles) reads in the mono face
- * so it registers as machine-set metadata against the Space Grotesk prose.
+ * so it registers as machine-set metadata against the IBM Plex Sans prose.
  */
 .footer-heading,
 .section-title,
