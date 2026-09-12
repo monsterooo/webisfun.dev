@@ -1,0 +1,152 @@
+---
+/**
+ * Custom Portable Text `code` renderer.
+ *
+ * EmDash's built-in Code.astro only emits a `language-xxx` class with no
+ * tokenizer behind it, so nothing actually gets colored. This highlights
+ * with Shiki at render time and swaps token colors for the site's existing
+ * light/dark toggle (`:root.light` / `:root.dark`, else OS preference).
+ *
+ * Shiki's `codeToHtml()` convenience always pulls in its WASM oniguruma
+ * engine internally (it ignores an `engine` override passed to it), and
+ * Cloudflare Workers -- our deploy target -- disallows dynamic
+ * WebAssembly.instantiate(). So a highlighter is built explicitly here with
+ * the pure-JS regex engine instead, which Shiki ships for exactly this case.
+ */
+import { createHighlighter, createJavaScriptRegexEngine } from "shiki";
+import type { Highlighter } from "shiki";
+
+export interface Props {
+	node: {
+		_type: "code";
+		_key: string;
+		code: string;
+		language?: string;
+		filename?: string;
+	};
+}
+
+const { node } = Astro.props;
+
+if (!node?.code) {
+	return null;
+}
+
+const { code, language, filename } = node;
+
+// A few aliases editors are likely to type that don't match Shiki's ids.
+const languageAliases: Record<string, string> = {
+	ts: "typescript",
+	js: "javascript",
+	sh: "bash",
+	shell: "bash",
+	yml: "yaml",
+	md: "markdown",
+};
+
+const requestedLang = language?.toLowerCase().trim();
+const lang = requestedLang
+	? (languageAliases[requestedLang] ?? requestedLang)
+	: "text";
+
+let highlighterPromise: Promise<Highlighter> | undefined = (
+	globalThis as { __shikiHighlighter?: Promise<Highlighter> }
+).__shikiHighlighter;
+
+if (!highlighterPromise) {
+	highlighterPromise = createHighlighter({
+		engine: createJavaScriptRegexEngine(),
+		themes: ["min-light", "min-dark"],
+		langs: [],
+	});
+	(globalThis as { __shikiHighlighter?: Promise<Highlighter> }).__shikiHighlighter =
+		highlighterPromise;
+}
+
+const highlighter = await highlighterPromise;
+
+let resolvedLang = "text";
+if (lang !== "text" && lang !== "plaintext" && lang !== "txt") {
+	try {
+		if (!highlighter.getLoadedLanguages().includes(lang)) {
+			await highlighter.loadLanguage(
+				lang as Parameters<Highlighter["loadLanguage"]>[0],
+			);
+		}
+		resolvedLang = lang;
+	} catch {
+		// Unknown/unsupported language id -- fall back to plain text rather
+		// than failing the whole page.
+		resolvedLang = "text";
+	}
+}
+
+const html = highlighter.codeToHtml(code, {
+	lang: resolvedLang,
+	themes: { light: "min-light", dark: "min-dark" },
+	defaultColor: false,
+});
+---
+
+<div class="code-block">
+	{filename && <div class="code-block-filename">{filename}</div>}
+	<Fragment set:html={html} />
+</div>
+
+<style>
+	.code-block {
+		margin: 1.5em 0;
+	}
+
+	.code-block-filename {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-bottom: none;
+		padding: var(--spacing-2) var(--spacing-4);
+		border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+	}
+
+	.code-block-filename + :global(.shiki) {
+		border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+	}
+
+	.code-block :global(.shiki) {
+		margin: 0;
+		padding: var(--spacing-4) var(--spacing-5);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		overflow-x: auto;
+		background-color: var(--color-surface);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		line-height: 1.6;
+	}
+
+	.code-block :global(.shiki code) {
+		background: none;
+		padding: 0;
+	}
+
+	/* Shiki's dual-theme output only emits CSS variables (defaultColor:
+	   false) -- these rules pick which one wins, mirroring Base.astro's own
+	   :root.light / :root.dark / OS-preference precedence. */
+	.code-block :global(.shiki),
+	.code-block :global(.shiki span) {
+		color: var(--shiki-light);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(:root:not(.light) .code-block .shiki),
+		:global(:root:not(.light) .code-block .shiki span) {
+			color: var(--shiki-dark);
+		}
+	}
+
+	:global(:root.dark .code-block .shiki),
+	:global(:root.dark .code-block .shiki span) {
+		color: var(--shiki-dark);
+	}
+</style>
