@@ -189,11 +189,6 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 					</div>
 					<h1 class="article-title" {...post.edit.title}>{post.data.title}</h1>
 					{
-						post.data.excerpt && (
-							<p class="article-excerpt" {...post.edit.excerpt}>{post.data.excerpt}</p>
-						)
-					}
-					{
 						tags.length > 0 && (
 							<div class="article-tags">
 								{tags.map((t) => (
@@ -202,6 +197,11 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 									</a>
 								))}
 							</div>
+						)
+					}
+					{
+						post.data.excerpt && (
+							<p class="article-excerpt" {...post.edit.excerpt}>{post.data.excerpt}</p>
 						)
 					}
 				</header>
@@ -508,17 +508,21 @@ const publishDate = post.data.publishedAt?.toLocaleDateString("en-CA") ?? null;
 		margin-bottom: var(--spacing-4);
 	}
 
-	.article-excerpt {
-		font-size: var(--font-size-xl);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
-	}
-
 	.article-tags {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--spacing-2);
+		margin-top: var(--spacing-4);
+	}
+
+	.article-excerpt {
+		font-size: var(--font-size-xl);
+		font-style: italic;
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
 		margin-top: var(--spacing-6);
+		padding-left: var(--spacing-5);
+		border-left: 3px solid var(--color-brand);
 	}
 
 	/* Article content typography */
